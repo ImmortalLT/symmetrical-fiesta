@@ -1,7 +1,7 @@
-name: XMRig Download & Test
+name: test
 
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   test:
